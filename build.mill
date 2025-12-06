@@ -1,12 +1,17 @@
 //| mill-version: 1.0.2
-//| mvnDeps: ["io.github.mikybars::openapi-generator-mill-plugin::0.1.0"]
+//| mvnDeps:
+//| - de.tototec::de.tobiasroeser.mill.jacoco::0.1.0
+//| - io.github.mikybars::openapi-generator-mill-plugin::0.1.0
+
 package build
 
 import mill.*
 import javalib.*
 import checkstyle.*
-import io.github.mikybars.mill.openapi.OpenApiModule
 import mill.api.BuildCtx
+
+import de.tobiasroeser.mill.jacoco.JacocoTestModule
+import io.github.mikybars.mill.openapi.OpenApiModule
 
 object `package` extends JavaModule, CheckstyleModule, OpenApiModule {
   override def checkstyleVersion = "10.26.1"
@@ -59,7 +64,7 @@ object `package` extends JavaModule, CheckstyleModule, OpenApiModule {
     "-s", generatedSources().head.path.toString()
   )
 
-  trait MyTestModule extends JavaTests, TestModule.Junit5 {
+  trait MyTestModule extends JavaTests, TestModule.Junit5, JacocoTestModule {
     override def testSandboxWorkingDir = false
 
     override def testParallelism: T[Boolean] = true
