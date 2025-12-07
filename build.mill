@@ -1,4 +1,4 @@
-//| mill-version: 1.0.2
+//| mill-version: 1.0.6
 //| mvnDeps:
 //| - de.tototec::de.tobiasroeser.mill.jacoco::0.1.0
 //| - io.github.mikybars::openapi-generator-mill-plugin::0.1.0
